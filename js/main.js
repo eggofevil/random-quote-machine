@@ -5,9 +5,9 @@ var btnNewQuote = document.querySelector('#btn-new-quote');
 var btnTweet = document.querySelector('#btn-tweet');
 var btnFB = document.querySelector('.AGFBBtn2');
 var tweetURL;
+var msgFB;
 var response;
 var quote;
-
 btnNewQuote.addEventListener('click', getQuote);
 btnTweet.addEventListener('click', tweet);
 
@@ -33,7 +33,7 @@ window.fbAsyncInit = function() {
   btnFB.addEventListener('click', function(){
     FB.login(function(){
     // Note: The call will only work if you accept the permission request
-      FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+      FB.api('/me/feed', 'post', {message: msgFB});
     }, {scope: 'publish_actions'});
   });
     
@@ -58,13 +58,18 @@ function getQuote(){
     quoteAuthor.setAttribute('id', 'author');
     quoteAuthor.textContent = request.response.author;
     quoteBlock.appendChild(quoteAuthor);
-    setTweet(request.response.quote, request.response.author);
+    setTweetmsg(request.response.quote, request.response.author);
+    setFBmsg(request.response.quote, request.response.author);
   });
   request.send();  
 }
 
 function setTweet(quote, author) {
   tweetURL = encodeURI(tweetBaseURL + '?text="' + quote + '"\n\n' + author);
+}
+
+function setFBmsg(quote, author) {
+  msgFB = '"' + quote + '"\n\n' + author;
 }
 
 function tweet() {
