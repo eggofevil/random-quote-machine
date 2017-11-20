@@ -33,7 +33,6 @@ window.fbAsyncInit = function() {
   btnFB.addEventListener('click', function(){
     FB.login(function(){
     // Note: The call will only work if you accept the permission request
-      console.log("Hello world" + msgFB);
       FB.api('/me/feed', 'post', {message: msgFB});
     }, {scope: 'publish_actions'});
   });
@@ -59,17 +58,17 @@ function getQuote(){
     quoteAuthor.setAttribute('id', 'author');
     quoteAuthor.textContent = request.response.author;
     quoteBlock.appendChild(quoteAuthor);
-    setTweetmsg(request.response.quote, request.response.author);
-    setFBmsg(request.response.quote, request.response.author);
+    setTwitterMsg(request.response.quote, request.response.author);
+    setFBMsg(request.response.quote, request.response.author);
   });
   request.send();  
 }
 
-function setTweetmsg(quote, author) {
+function setTwitterMsg(quote, author) {
   tweetURL = encodeURI(tweetBaseURL + '?text="' + quote + '"\n\n' + author);
 }
 
-function setFBmsg(quote, author) {
+function setFBMsg(quote, author) {
   msgFB = '"' + quote + '"\n\n' + author;
 }
 
