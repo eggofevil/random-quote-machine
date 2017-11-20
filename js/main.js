@@ -13,7 +13,7 @@ btnTweet.addEventListener('click', tweet);
 btnFB.addEventListener('click', postOnFacebook);
 
 // Load facebook SDK
-      
+
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
@@ -22,10 +22,7 @@ btnFB.addEventListener('click', postOnFacebook);
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-//My functions
-
-function postOnFacebook() {
-  window.fbAsyncInit = function() {
+window.fbAsyncInit = function() {
   FB.init({
     appId            : '891727367670223',
     autoLogAppEvents : true,
@@ -34,12 +31,14 @@ function postOnFacebook() {
   });
   FB.AppEvents.logPageView();
   //setting my function for FB button;
+  btnFB.addEventListener('click', function(){
     FB.login(function(){
-  // Note: The call will only work if you accept the permission request
+    // Note: The call will only work if you accept the permission request
       FB.api('/me/feed', 'post', {message: 'Hello, world!'});
     }, {scope: 'publish_actions'});
-  };
-}
+  });
+    
+};
 
 function getQuote(){
   var content = quoteBlock.querySelectorAll('p');
