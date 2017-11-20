@@ -33,6 +33,7 @@ window.fbAsyncInit = function() {
   btnFB.addEventListener('click', function(){
     FB.login(function(){
     // Note: The call will only work if you accept the permission request
+      console.log("Hello world" + msgFB);
       FB.api('/me/feed', 'post', {message: msgFB});
     }, {scope: 'publish_actions'});
   });
