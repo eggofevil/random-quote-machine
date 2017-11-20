@@ -24,14 +24,6 @@ window.fbAsyncInit = function() {
   FB.AppEvents.logPageView();
   
   //setting my function for FB button;
-  
-  function postOnFacebook() {
-    //Publish on facebook function
-    FB.login(function(){
-      // Note: The call will only work if you accept the permission request
-      FB.api('/me/feed', 'post', {message: 'Hello, world!'});
-    }, {scope: 'publish_actions'});
-  }
 };
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -42,6 +34,14 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 //My functions
+
+function postOnFacebook() {
+  //Publish on facebook function
+  FB.login(function(){
+  // Note: The call will only work if you accept the permission request
+  FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+  }, {scope: 'publish_actions'});
+}
 
 function getQuote(){
   var content = quoteBlock.querySelectorAll('p');
