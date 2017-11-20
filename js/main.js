@@ -3,12 +3,45 @@ var tweetBaseURL = 'https://twitter.com/intent/tweet'
 var quoteBlock = document.querySelector('#quote-block');
 var btnNewQuote = document.querySelector('#btn-new-quote');
 var btnTweet = document.querySelector('#btn-tweet');
+var btnFB = document.querySelector('.AGFBBtn2');
 var tweetURL;
 var response;
 var quote;
 
 btnNewQuote.addEventListener('click', getQuote);
 btnTweet.addEventListener('click', tweet);
+btnFB.addEventListener('click', postOnFacebook);
+
+// Load facebook SDK
+      
+window.fbAsyncInit = function() {
+  FB.init({
+    appId            : '891727367670223',
+    autoLogAppEvents : true,
+    xfbml            : true,
+    version          : 'v2.11'
+  });
+  FB.AppEvents.logPageView();
+  
+  //setting my function for FB button;
+  
+  function postOnFacebook() {
+    //Publish on facebook function
+    FB.login(function(){
+      // Note: The call will only work if you accept the permission request
+      FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+    }, {scope: 'publish_actions'});
+  }
+};
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+//My functions
 
 function getQuote(){
   var content = quoteBlock.querySelectorAll('p');
@@ -43,3 +76,5 @@ function tweet() {
 }
 
 getQuote();
+
+//https://developers.facebook.com/docs/sharing/reference/share-dialog#advancedtopics
