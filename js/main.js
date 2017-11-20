@@ -65,7 +65,7 @@ function getQuote(){
   request.send();  
 }
 
-function setTweet(quote, author) {
+function setTweetmsg(quote, author) {
   tweetURL = encodeURI(tweetBaseURL + '?text="' + quote + '"\n\n' + author);
 }
 
