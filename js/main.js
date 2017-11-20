@@ -20,7 +20,7 @@ window.fbAsyncInit = function() {
     autoLogAppEvents : true,
     xfbml            : true,
     version          : 'v2.11'
-    console.log("App initialised");
+    alert("App initialised");
   });
   FB.AppEvents.logPageView();
   
