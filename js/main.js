@@ -19,11 +19,10 @@ window.fbAsyncInit = function() {
     appId            : '891727367670223',
     autoLogAppEvents : true,
     xfbml            : true,
-    version          : 'v2.11'
-    alert("App initialised");
+    version          : 'v2.11'    
   });
   FB.AppEvents.logPageView();
-  
+  alert("App initialised");
   //setting my function for FB button;
 };
 (function(d, s, id){
