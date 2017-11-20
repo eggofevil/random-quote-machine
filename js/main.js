@@ -10,7 +10,6 @@ var quote;
 
 btnNewQuote.addEventListener('click', getQuote);
 btnTweet.addEventListener('click', tweet);
-btnFB.addEventListener('click', postOnFacebook);
 
 // Load facebook SDK
 
