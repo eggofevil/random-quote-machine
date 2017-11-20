@@ -14,17 +14,6 @@ btnFB.addEventListener('click', postOnFacebook);
 
 // Load facebook SDK
       
-window.fbAsyncInit = function() {
-  FB.init({
-    appId            : '891727367670223',
-    autoLogAppEvents : true,
-    xfbml            : true,
-    version          : 'v2.11'    
-  });
-  FB.AppEvents.logPageView();
-  alert("App initialised");
-  //setting my function for FB button;
-};
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
@@ -36,12 +25,20 @@ window.fbAsyncInit = function() {
 //My functions
 
 function postOnFacebook() {
-  //Publish on facebook function
-  FB.login(function(){
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId            : '891727367670223',
+    autoLogAppEvents : true,
+    xfbml            : true,
+    version          : 'v2.11'    
+  });
+  FB.AppEvents.logPageView();
+  //setting my function for FB button;
+    FB.login(function(){
   // Note: The call will only work if you accept the permission request
-  FB.api('/me/feed', 'post', {message: 'Hello, world!'});
-  }, {scope: 'publish_actions'});
-  console.log("running post on fb function");
+      FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+    }, {scope: 'publish_actions'});
+  };
 }
 
 function getQuote(){
