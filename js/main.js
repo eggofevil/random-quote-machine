@@ -50,16 +50,20 @@ function getQuote(){
   request.setRequestHeader("Accept", "application/json");
   request.responseType = 'json';
   request.addEventListener('load', function() {
+    response = request.response;
+    if(typeof(response) === 'string') {
+      response = JSON.parse(response);
+    }
     var quotePara = document.createElement('p');
     quotePara.setAttribute('id', 'quote');
-    quotePara.textContent = request.response.quote;
+    quotePara.textContent = response.quote;
     quoteBlock.appendChild(quotePara);
     var quoteAuthor = document.createElement('p')
     quoteAuthor.setAttribute('id', 'author');
-    quoteAuthor.textContent = request.response.author;
+    quoteAuthor.textContent = response.author;
     quoteBlock.appendChild(quoteAuthor);
-    setTwitterMsg(request.response.quote, request.response.author);
-    setFBMsg(request.response.quote, request.response.author);
+    setTwitterMsg(response.quote, response.author);
+    setFBMsg(response.quote, response.author);
   });
   request.send();  
 }
